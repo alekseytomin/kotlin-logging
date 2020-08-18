@@ -108,6 +108,16 @@ kotlin {
                 implementation(kotlin("test-js"))
             }
         }
+        named("linuxX64Main") {
+            dependencies {
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-native:1.3.8")
+            }
+        }
+        named("macosX64Main") {
+            dependencies {
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-native:1.3.8")
+            }
+        }
     }
 }
 
