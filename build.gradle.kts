@@ -59,9 +59,10 @@ kotlin {
         browser()
         //nodejs()
     }
-    linuxX64("linuxX64")
-    macosX64("macosX64")
-    mingwX64("mingwX64")
+    linuxX64("linux")
+    macosX64("macos")
+    ios("ios")
+    mingwX64("mingw")
     sourceSets {
         val commonMain by getting {}
         val commonTest by getting  {
@@ -94,15 +95,24 @@ kotlin {
         }
         val nativeMain by creating {
             dependsOn(commonMain)
+            dependencies {
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9-native-mt")
+            }
         }
-        val linuxX64Main by getting {
+        val linuxMain by getting {
             dependsOn(nativeMain)
         }
-        val mingwX64Main by getting {
+        val mingwMain by getting {
             dependsOn(nativeMain)
         }
-        val macosX64Main by getting {
+        val darwinMain by creating {
             dependsOn(nativeMain)
+        }
+        val macosMain by getting {
+            dependsOn(darwinMain)
+        }
+        val iosMain by getting {
+            dependsOn(darwinMain)
         }
     }
 }
